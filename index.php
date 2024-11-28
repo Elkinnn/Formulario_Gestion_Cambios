@@ -28,9 +28,24 @@
     </nav>
 
     <div class="hero">
-        <div>
+        <div class="text-center text-white">
             <h1>Gestión de Cambios</h1>
-            <p>Selecciona una opción desde el menú superior para continuar.</p>
+            <p class="mt-3">
+                Bienvenido a nuestra herramienta colaborativa diseñada para gestionar solicitudes de cambio en proyectos. 
+                Aquí podrás registrar peticiones, revisarlas y darles seguimiento de manera eficiente y ordenada.
+            </p>
+            <p class="mt-3">
+                Nuestro objetivo es facilitar el control de los cambios en proyectos, asegurando que cada solicitud sea documentada 
+                correctamente y revisada por los responsables adecuados.
+            </p>
+            <h3 class="mt-5">Equipo de Trabajo</h3>
+            <ul class="list-inline mt-3">
+                <li class="list-inline-item px-3">Angel Ayuquina</li>
+                <li class="list-inline-item px-3">Leonel Barros</li>
+                <li class="list-inline-item px-3">Diego Jijón</li>
+                <li class="list-inline-item px-3">Elkin López</li>
+                <li class="list-inline-item px-3">Sebastian Ortiz</li>
+            </ul>
         </div>
     </div>
 

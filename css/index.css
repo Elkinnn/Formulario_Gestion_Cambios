@@ -19,6 +19,7 @@ body {
     min-height: calc(100vh - 70px - 50px); 
     background: linear-gradient(135deg, #4caf50, #2d8cf0);
     color: white;
+    padding: 20px;
 }
 
 .hero h1 {
@@ -28,6 +29,22 @@ body {
 
 .hero p {
     font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero .list-inline {
+    margin-top: 20px;
+}
+
+.hero .list-inline-item {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 5px;
 }
 
 footer {
@@ -38,3 +55,4 @@ footer {
     position: relative; 
     width: 100%;
 }
+
