@@ -1,9 +1,7 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
-    height: 100%;
 }
 
 /* Navbar */
@@ -20,9 +18,25 @@ body {
     padding: 50px 20px;
 }
 
-/* Info Cards */
+.hero h1 {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hero .btn {
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero .btn:hover {
+    background-color: #3a8e3a;
+    transform: scale(1.1);
+}
+
+/* Info Section */
 .info-card {
-    width: 300px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -32,17 +46,11 @@ body {
 }
 
 .info-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
 }
 
-.info-card p {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.4;
-}
-
-/* Team Cards */
+/* Team Section */
 .team-card {
     text-align: center;
     width: 150px;
@@ -56,8 +64,5 @@ body {
 
 /* Footer */
 footer {
-    background-color: #333;
-    color: white;
-    padding: 15px 0;
-    text-align: center;
+    font-size: 0.9rem;
 }
