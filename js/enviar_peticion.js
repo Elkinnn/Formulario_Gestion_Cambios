@@ -1,13 +1,13 @@
 $(document).ready(function() {
-    // Obtener proyectos con roles cuando la página se carga
+    // Obtener los proyectos, roles y solicitantes cuando la página se carga
     $.ajax({
-        url: './backend/enviar_peticion_queries.php',  // Ruta al archivo PHP que devuelve los proyectos y roles
+        url: './backend/enviar_peticion_queries.php',  // Ruta al archivo PHP que devuelve los proyectos, roles y solicitantes
         method: 'GET',
+        dataType: 'json',
         success: function(data) {
-            var data = JSON.parse(data);  // Parseamos la respuesta JSON
-            
             // Cargar proyectos en el select de proyectos
-            for (var project in data.proyectos_roles) {
+            var dataProyectos = data.proyectos;
+            for (var project in dataProyectos) {
                 $('#nombre_proyecto').append('<option value="' + project + '">' + project + '</option>');
             }
 
@@ -22,42 +22,27 @@ $(document).ready(function() {
                     $('#rol_solicitante').append('<option value="" disabled selected>Seleccione un rol</option>');
                     
                     // Obtener los roles correspondientes al proyecto seleccionado
-                    var roles = data.proyectos_roles[selectedProject];
+                    var roles = dataProyectos[selectedProject];
                     
                     // Insertar los roles en el select de roles
-                    if (roles) {
-                        roles.forEach(function(role) {
-                            $('#rol_solicitante').append('<option value="' + role + '">' + role + '</option>');
-                        });
-                    } else {
-                        $('#rol_solicitante').append('<option value="">No hay roles disponibles</option>');
-                    }
+                    roles.forEach(function(role) {
+                        $('#rol_solicitante').append('<option value="' + role + '">' + role + '</option>');
+                    });
                 }
             });
-        },
-        error: function(xhr, status, error) {
-            console.error('Error al cargar los proyectos y roles:', error);
-        }
-    });
 
-    // Obtener los solicitantes cuando la página se carga
-    $.ajax({
-        url: './backend/enviar_peticion_queries.php', // Ruta al archivo PHP que devuelve los solicitantes
-        method: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            // Llenar el select con los solicitantes
+            // Cargar los solicitantes en el select de nombre_solicitante
             var solicitanteSelect = $('#nombre_solicitante');
             solicitanteSelect.empty(); // Limpiar el select antes de llenarlo
             solicitanteSelect.append('<option value="" disabled selected>Seleccione un solicitante</option>'); // Opción predeterminada
 
             // Agregar los solicitantes como opciones en el select
-            data.forEach(function(solicitante) {
-                solicitanteSelect.append('<option value="' + solicitante.id + '">' + solicitante.nombre + '</option>');
+            data.solicitantes.forEach(function(solicitante) {
+                solicitanteSelect.append('<option value="' + solicitante.id + '">' + solicitante.nombre + ' (' + solicitante.rol_en_proyecto + ')</option>');
             });
         },
         error: function(xhr, status, error) {
-            console.error("Error al cargar los solicitantes:", error);
+            console.error("Error al cargar los proyectos, roles y solicitantes:", error);
         }
     });
 });
