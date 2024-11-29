@@ -49,6 +49,7 @@ $(document).ready(function() {
         error: function(xhr, status, error) {
             console.error("Error al cargar los proyectos y roles:", error);
         }
-        
     });
+
 });
+
