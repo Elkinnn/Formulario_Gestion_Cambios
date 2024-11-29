@@ -130,6 +130,10 @@
 
         <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
     </form>
+     <!-- Mensaje de éxito -->
+     <div id="mensaje_exito" class="alert alert-success mt-3" style="display: none;">
+        ¡La solicitud ha sido enviada exitosamente!
+    </div>
 </div>
 
 </body>

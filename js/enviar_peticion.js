@@ -28,21 +28,27 @@ $(document).ready(function() {
                     roles.forEach(function(role) {
                         $('#rol_solicitante').append('<option value="' + role + '">' + role + '</option>');
                     });
+
+                    // Filtrar los solicitantes correspondientes al proyecto seleccionado
+                    var solicitantes = data.solicitantes.filter(function(solicitante) {
+                        return solicitante.proyecto === selectedProject;  // Filtrar por el nombre del proyecto
+                    });
+
+                    // Cargar los solicitantes en el select de nombre_solicitante
+                    var solicitanteSelect = $('#nombre_solicitante');
+                    solicitanteSelect.empty(); // Limpiar el select antes de llenarlo
+                    solicitanteSelect.append('<option value="" disabled selected>Seleccione un solicitante</option>'); // Opción predeterminada
+
+                    // Agregar los solicitantes como opciones en el select
+                    solicitantes.forEach(function(solicitante) {
+                        solicitanteSelect.append('<option value="' + solicitante.id + '">' + solicitante.nombre + ' (' + solicitante.rol_en_proyecto + ')</option>');
+                    });
                 }
-            });
-
-            // Cargar los solicitantes en el select de nombre_solicitante
-            var solicitanteSelect = $('#nombre_solicitante');
-            solicitanteSelect.empty(); // Limpiar el select antes de llenarlo
-            solicitanteSelect.append('<option value="" disabled selected>Seleccione un solicitante</option>'); // Opción predeterminada
-
-            // Agregar los solicitantes como opciones en el select
-            data.solicitantes.forEach(function(solicitante) {
-                solicitanteSelect.append('<option value="' + solicitante.id + '">' + solicitante.nombre + ' (' + solicitante.rol_en_proyecto + ')</option>');
             });
         },
         error: function(xhr, status, error) {
-            console.error("Error al cargar los proyectos, roles y solicitantes:", error);
+            console.error("Error al cargar los proyectos y roles:", error);
         }
+        
     });
 });

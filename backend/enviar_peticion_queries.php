@@ -83,7 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Cerrar la conexión
     $stmt->close();
 }
-
 // Consulta para obtener los proyectos con sus roles y los usuarios con sus roles en los proyectos
 $sql = "
     SELECT p.nombre AS proyecto, up.rol_en_proyecto, u.id AS usuario_id, u.nombre AS usuario_nombre
@@ -104,11 +103,12 @@ if ($result->num_rows > 0) {
         // Guardar los proyectos y roles
         $proyectos[$row['proyecto']][] = $row['rol_en_proyecto'];
 
-        // Guardar los solicitantes con roles
+        // Guardar los solicitantes con roles y el proyecto asociado
         $solicitantes[] = [
             'id' => $row['usuario_id'],
             'nombre' => $row['usuario_nombre'],
-            'rol_en_proyecto' => $row['rol_en_proyecto']
+            'rol_en_proyecto' => $row['rol_en_proyecto'],
+            'proyecto' => $row['proyecto'] // Añadir la propiedad 'proyecto'
         ];
     }
 }
@@ -122,4 +122,3 @@ $response = [
 echo json_encode($response);
 
 $conn->close();
-?>
