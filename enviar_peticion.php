@@ -133,4 +133,7 @@
 </div>
 
 </body>
+<footer>
+        <p>&copy; 2024 Gestión de Cambios. Todos los derechos reservados.</p>
+    </footer>
 </html>
