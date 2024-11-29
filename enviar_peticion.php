@@ -6,6 +6,8 @@
     <title>Formulario de Solicitud y Control de Cambios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/enviar_peticion.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="./js/enviar_peticion.js"></script> 
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,7 +31,7 @@
 
     <div class="container mt-5">
     <h2 class="text-center">Formulario de Solicitud y Control de Cambios</h2>
-    <form action="backend/enviar_peticion_queries.php" method="POST" class="mt-4">
+    <form action="backend/enviar_peticion_queries.php" method="POST">
         <!-- Información básica -->
         <div class="row mb-3">
             <div class="col-md-6">
@@ -42,28 +44,17 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="nombre_proyecto" class="form-label">Nombre del Proyecto</label>
-                <select class="form-select" id="nombre_proyecto" name="nombre_proyecto" required>
-                    <option value="" disabled selected>Seleccione un proyecto</option>
-                    <?php
-                    // Listar los proyectos desde la base de datos
-                    foreach ($proyectos as $proyecto) {
-                        echo "<option value='" . $proyecto['nombre'] . "'>" . $proyecto['nombre'] . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
+        <div class="col-md-6">
+    <label for="nombre_proyecto" class="form-label">Nombre del Proyecto</label>
+    <select class="form-select" id="nombre_proyecto" name="nombre_proyecto" required>
+        <option value="" disabled selected>Seleccione un proyecto</option>
+    </select>
+</div>
             <div class="col-md-6">
                 <label for="rol_solicitante" class="form-label">Rol Solicitante</label>
                 <select class="form-select" id="rol_solicitante" name="rol_solicitante" required>
                     <option value="" disabled selected>Seleccione un rol</option>
-                    <?php
-                    // Listar los roles desde la base de datos
-                    foreach ($roles as $rol) {
-                        echo "<option value='" . $rol['rol_en_proyecto'] . "'>" . $rol['rol_en_proyecto'] . "</option>";
-                    }
-                    ?>
+                   
                 </select>
                 </select>
             </div>
