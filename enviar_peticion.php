@@ -29,7 +29,7 @@
 
     <div class="container mt-5">
     <h2 class="text-center">Formulario de Solicitud y Control de Cambios</h2>
-    <form action="procesar_peticion.php" method="POST" class="mt-4">
+    <form action="backend/enviar_peticion_queries.php" method="POST" class="mt-4">
         <!-- Información básica -->
         <div class="row mb-3">
             <div class="col-md-6">
@@ -44,13 +44,27 @@
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="nombre_proyecto" class="form-label">Nombre del Proyecto</label>
-                <input type="text" class="form-control" id="nombre_proyecto" name="nombre_proyecto" required>
+                <select class="form-select" id="nombre_proyecto" name="nombre_proyecto" required>
+                    <option value="" disabled selected>Seleccione un proyecto</option>
+                    <?php
+                    // Listar los proyectos desde la base de datos
+                    foreach ($proyectos as $proyecto) {
+                        echo "<option value='" . $proyecto['nombre'] . "'>" . $proyecto['nombre'] . "</option>";
+                    }
+                    ?>
+                </select>
             </div>
             <div class="col-md-6">
                 <label for="rol_solicitante" class="form-label">Rol Solicitante</label>
                 <select class="form-select" id="rol_solicitante" name="rol_solicitante" required>
-                    <option value="Solicitante">Solicitante</option>
-                    <option value="Revisor">Revisor</option>
+                    <option value="" disabled selected>Seleccione un rol</option>
+                    <?php
+                    // Listar los roles desde la base de datos
+                    foreach ($roles as $rol) {
+                        echo "<option value='" . $rol['rol_en_proyecto'] . "'>" . $rol['rol_en_proyecto'] . "</option>";
+                    }
+                    ?>
+                </select>
                 </select>
             </div>
         </div>
