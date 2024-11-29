@@ -28,129 +28,102 @@
     </nav>
 
     <div class="container mt-5">
-        <h2 class="text-center">Formulario de Solicitud y Control de Cambios</h2>
-        <form action="procesar_peticion.php" method="POST" class="mt-4">
-            <!-- Información básica -->
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="fecha_solicitud" class="form-label">Fecha de Solicitud</label>
-                    <input type="date" class="form-control" id="fecha_solicitud" name="fecha_solicitud" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="numero_cambio" class="form-label">Número de Cambio</label>
-                    <input type="text" class="form-control" id="numero_cambio" name="numero_cambio" placeholder="Ej: NC-001" required>
-                </div>
+    <h2 class="text-center">Formulario de Solicitud y Control de Cambios</h2>
+    <form action="procesar_peticion.php" method="POST" class="mt-4">
+        <!-- Información básica -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="fecha_solicitud" class="form-label">Fecha de Solicitud</label>
+                <input type="date" class="form-control" id="fecha_solicitud" name="fecha_solicitud" required>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="nombre_proyecto" class="form-label">Nombre del Proyecto</label>
-                    <input type="text" class="form-control" id="nombre_proyecto" name="nombre_proyecto" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="rol_solicitante" class="form-label">Rol Solicitante</label>
-                    <select class="form-select" id="rol_solicitante" name="rol_solicitante" required>
-                        <option value="Solicitante">Solicitante</option>
-                        <option value="Revisor">Revisor</option>
-                    </select>
-                </div>
+            <div class="col-md-6">
+                <label for="numero_cambio" class="form-label">Número de Cambio</label>
+                <input type="text" class="form-control" id="numero_cambio" name="numero_cambio" placeholder="Ej: NC-001" required>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="nombre_solicitante" class="form-label">Nombre del Solicitante</label>
-                    <input type="text" class="form-control" id="nombre_solicitante" name="nombre_solicitante" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contacto" class="form-label">Contacto del Solicitante</label>
-                    <input type="text" class="form-control" id="contacto" name="contacto" required>
-                </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="nombre_proyecto" class="form-label">Nombre del Proyecto</label>
+                <input type="text" class="form-control" id="nombre_proyecto" name="nombre_proyecto" required>
             </div>
-
-            <!-- Solicitud de Cambio -->
-            <h4>1. Solicitud de Cambio</h4>
-            <div class="mb-3">
-                <label for="descripcion_cambio" class="form-label">Descripción del Cambio</label>
-                <textarea class="form-control" id="descripcion_cambio" name="descripcion_cambio" rows="4" required></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="prioridad" class="form-label">Prioridad</label>
-                <select class="form-select" id="prioridad" name="prioridad" required>
-                    <option value="Alta">Alta</option>
-                    <option value="Media">Media</option>
-                    <option value="Baja">Baja</option>
+            <div class="col-md-6">
+                <label for="rol_solicitante" class="form-label">Rol Solicitante</label>
+                <select class="form-select" id="rol_solicitante" name="rol_solicitante" required>
+                    <option value="Solicitante">Solicitante</option>
+                    <option value="Revisor">Revisor</option>
                 </select>
             </div>
-            <div class="mb-3">
-                <label for="razon" class="form-label">Razón del Cambio</label>
-                <textarea class="form-control" id="razon" name="razon" rows="4" required></textarea>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="nombre_solicitante" class="form-label">Nombre del Solicitante</label>
+                <input type="text" class="form-control" id="nombre_solicitante" name="nombre_solicitante" required>
             </div>
+            <div class="col-md-6">
+                <label for="contacto" class="form-label">Contacto del Solicitante</label>
+                <input type="text" class="form-control" id="contacto" name="contacto" required>
+            </div>
+        </div>
 
-            <!-- Revisión del Cambio -->
-            <h4>2. Revisión del Cambio</h4>
-            <div class="mb-3">
-                <label for="tipo_cambio" class="form-label">Tipo</label>
-                <select class="form-select" id="tipo_cambio" name="tipo_cambio" required>
-                    <option value="Correctivo">Correctivo</option>
-                    <option value="Mejora">Mejora</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="descripcion_revision" class="form-label">Descripción</label>
-                <textarea class="form-control" id="descripcion_revision" name="descripcion_revision" rows="4" required></textarea>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="cronologia_prevista" class="form-label">Cronología Prevista</label>
-                    <input type="date" class="form-control" id="cronologia_prevista" name="cronologia_prevista" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="costos_estimados" class="form-label">Costos Estimados</label>
-                    <input type="number" class="form-control" id="costos_estimados" name="costos_estimados" step="0.01" required>
-                </div>
-            </div>
+        <!-- Solicitud de Cambio -->
+        <h4>1. Solicitud de Cambio</h4>
+        <div class="mb-3">
+            <label for="descripcion_cambio" class="form-label">Descripción del Cambio</label>
+            <textarea class="form-control" id="descripcion_cambio" name="descripcion_cambio" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="prioridad" class="form-label">Prioridad</label>
+            <select class="form-select" id="prioridad" name="prioridad" required>
+                <option value="Alta">Alta</option>
+                <option value="Media">Media</option>
+                <option value="Baja">Baja</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="razon" class="form-label">Razón del Cambio</label>
+            <textarea class="form-control" id="razon" name="razon" rows="4" required></textarea>
+        </div>
 
-            <!-- Seguimiento del Cambio -->
-            <h4>3. Seguimiento del Cambio</h4>
-            <div class="mb-3">
-                <label for="acciones" class="form-label">Acciones a Implementar</label>
-                <textarea class="form-control" id="acciones" name="acciones" rows="4" required></textarea>
+        <!-- Revisión del Cambio (Bloqueada para el usuario) -->
+        <h4 class="text-muted">2. Revisión del Cambio</h4>
+        <div class="mb-3">
+            <label for="tipo_cambio" class="form-label">Tipo</label>
+            <input type="text" class="form-control" id="tipo_cambio" name="tipo_cambio" value="No definido" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion_revision" class="form-label">Descripción</label>
+            <textarea class="form-control" id="descripcion_revision" name="descripcion_revision" rows="4" readonly>No definido</textarea>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="cronologia_prevista" class="form-label">Cronología Prevista</label>
+                <input type="text" class="form-control" id="cronologia_prevista" name="cronologia_prevista" value="No definido" readonly>
             </div>
-            <div class="mb-3">
-                <label for="responsable" class="form-label">Responsable</label>
-                <input type="text" class="form-control" id="responsable" name="responsable" required>
+            <div class="col-md-6">
+                <label for="costos_estimados" class="form-label">Costos Estimados</label>
+                <input type="text" class="form-control" id="costos_estimados" name="costos_estimados" value="No definido" readonly>
             </div>
-            <div class="mb-3">
-                <label for="tiempo_implementacion" class="form-label">Tiempo de Implementación</label>
-                <input type="text" class="form-control" id="tiempo_implementacion" name="tiempo_implementacion" required>
-            </div>
-            <!-- Sección de Aprobación -->
-<h4>Aprobación</h4>
-<div class="mb-3">
-    <label for="rol_aprobador" class="form-label">Rol en Aprobación</label>
-    <select class="form-select" id="rol_aprobador" name="rol_aprobador" required>
-        <option value="Líder">Líder</option>
-        <option value="Miembro">Miembro</option>
-        <option value="Cliente">Cliente</option>
-    </select>
-</div>
-<div class="mb-3">
-    <label for="aprobado_por" class="form-label">Aprobado por</label>
-    <input type="text" class="form-control" id="aprobado_por" name="aprobado_por" placeholder="Nombre del aprobador" required>
-</div>
-<div class="mb-3">
-    <label for="fecha_aprobacion" class="form-label">Fecha de Aprobación</label>
-    <input type="date" class="form-control" id="fecha_aprobacion" name="fecha_aprobacion" required>
-</div>
-<div class="mb-3">
-    <label for="estado" class="form-label">Estado</label>
-    <select class="form-select" id="estado" name="estado" required>
-        <option value="Pendiente" selected>Pendiente</option>
-        <option value="Aprobada">Aprobada</option>
-        <option value="Rechazada">Rechazada</option>
-    </select>
+        </div>
+
+        <!-- Aprobación (Bloqueada para el usuario) -->
+        <h4 class="text-muted">Aprobación</h4>
+        <div class="mb-3">
+            <label for="rol_aprobador" class="form-label">Rol en Aprobación</label>
+            <input type="text" class="form-control" id="rol_aprobador" name="rol_aprobador" value="No definido" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="aprobado_por" class="form-label">Aprobado por</label>
+            <input type="text" class="form-control" id="aprobado_por" name="aprobado_por" value="No definido" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="fecha_aprobacion" class="form-label">Fecha de Aprobación</label>
+            <input type="text" class="form-control" id="fecha_aprobacion" name="fecha_aprobacion" value="No definido" readonly>
+        </div>
+        <input type="hidden" name="estado" value="Pendiente">
+
+        <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+    </form>
 </div>
 
-            <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
-        </form>
-    </div>
 </body>
 </html>
