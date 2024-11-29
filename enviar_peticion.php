@@ -122,6 +122,32 @@
                 <label for="tiempo_implementacion" class="form-label">Tiempo de Implementación</label>
                 <input type="text" class="form-control" id="tiempo_implementacion" name="tiempo_implementacion" required>
             </div>
+            <!-- Sección de Aprobación -->
+<h4>Aprobación</h4>
+<div class="mb-3">
+    <label for="rol_aprobador" class="form-label">Rol en Aprobación</label>
+    <select class="form-select" id="rol_aprobador" name="rol_aprobador" required>
+        <option value="Líder">Líder</option>
+        <option value="Miembro">Miembro</option>
+        <option value="Cliente">Cliente</option>
+    </select>
+</div>
+<div class="mb-3">
+    <label for="aprobado_por" class="form-label">Aprobado por</label>
+    <input type="text" class="form-control" id="aprobado_por" name="aprobado_por" placeholder="Nombre del aprobador" required>
+</div>
+<div class="mb-3">
+    <label for="fecha_aprobacion" class="form-label">Fecha de Aprobación</label>
+    <input type="date" class="form-control" id="fecha_aprobacion" name="fecha_aprobacion" required>
+</div>
+<div class="mb-3">
+    <label for="estado" class="form-label">Estado</label>
+    <select class="form-select" id="estado" name="estado" required>
+        <option value="Pendiente" selected>Pendiente</option>
+        <option value="Aprobada">Aprobada</option>
+        <option value="Rechazada">Rechazada</option>
+    </select>
+</div>
 
             <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
         </form>
