@@ -2,9 +2,47 @@
 // Incluir archivo de configuración para conexión a la base de datos
 include '../config/config.php';
 
+// Verificar si se recibió una solicitud GET para obtener el contacto del solicitante
+if (isset($_POST['solicitante_id'])) {
+    $solicitante_id = $_POST['solicitante_id'];
+
+    // Obtener los datos del solicitante usando el ID
+    $sql = "
+        SELECT u.nombre, u.telefono, up.rol_en_proyecto, p.nombre AS proyecto
+        FROM usuarios u
+        JOIN usuarios_proyectos up ON u.id = up.id_usuario
+        JOIN proyectos p ON up.id_proyecto = p.id
+        WHERE u.id = ?
+    ";
+
+    // Preparar la consulta
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $solicitante_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Verificar si se encontró el solicitante
+    if ($result->num_rows > 0) {
+        $solicitante = $result->fetch_assoc();
+        
+        // Enviar los datos del solicitante en formato JSON
+        echo json_encode([
+            'nombre_solicitante' => $solicitante['nombre'],
+            'telefono_solicitante' => $solicitante['telefono'],
+            'rol_en_proyecto' => $solicitante['rol_en_proyecto'],
+            'proyecto' => $solicitante['proyecto']
+        ]);
+    } else {
+        echo json_encode(['error' => 'Solicitante no encontrado']);
+    }
+
+    $stmt->close();
+    $conn->close();
+    exit;
+}
+
 // Verificar si el formulario fue enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
     // Obtener los valores del formulario
     $fecha_solicitud = $_POST['fecha_solicitud'];
     $numero_cambio = $_POST['numero_cambio'];
@@ -44,10 +82,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Obtener el ID del solicitante basado en el rol y el proyecto
     $sql_usuario = "
-        SELECT u.id 
+        SELECT u.id, u.telefono 
         FROM usuarios u
         JOIN usuarios_proyectos up ON u.id = up.id_usuario
-        WHERE up.rol_en_proyecto = ? AND up.id_proyecto = ?
+        WHERE up.rol_en_proyecto = ? AND up.id_proyecto = ? AND u.rol = 'Solicitante'
     ";
     $stmt = $conn->prepare($sql_usuario);
     $stmt->bind_param('si', $rol_solicitante, $id_proyecto);  // Usamos el rol y el id del proyecto
@@ -57,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         $usuario = $result->fetch_assoc();
         $id_solicitante = $usuario['id'];  // Obtener el ID del solicitante
+        $contacto = $usuario['telefono'];  // Obtener el teléfono del solicitante
     } else {
         die("Error: Solicitante no encontrado.");
     }
@@ -83,12 +122,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Cerrar la conexión
     $stmt->close();
 }
+
 // Consulta para obtener los proyectos con sus roles y los usuarios con sus roles en los proyectos
 $sql = "
-    SELECT p.nombre AS proyecto, up.rol_en_proyecto, u.id AS usuario_id, u.nombre AS usuario_nombre
+    SELECT p.nombre AS proyecto, up.rol_en_proyecto, u.id AS usuario_id, u.nombre AS usuario_nombre, u.telefono
     FROM proyectos p
     LEFT JOIN usuarios_proyectos up ON p.id = up.id_proyecto
     LEFT JOIN usuarios u ON up.id_usuario = u.id
+    WHERE u.rol = 'Solicitante'
 ";
 
 // Ejecutar la consulta
@@ -108,6 +149,7 @@ if ($result->num_rows > 0) {
             'id' => $row['usuario_id'],
             'nombre' => $row['usuario_nombre'],
             'rol_en_proyecto' => $row['rol_en_proyecto'],
+            'telefono' => $row['telefono'],  // Agregar el teléfono
             'proyecto' => $row['proyecto'] // Añadir la propiedad 'proyecto'
         ];
     }
@@ -122,3 +164,4 @@ $response = [
 echo json_encode($response);
 
 $conn->close();
+?>

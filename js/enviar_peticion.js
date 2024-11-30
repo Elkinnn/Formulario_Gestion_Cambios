@@ -25,9 +25,13 @@ $(document).ready(function() {
                     var roles = dataProyectos[selectedProject];
                     
                     // Insertar los roles en el select de roles
-                    roles.forEach(function(role) {
-                        $('#rol_solicitante').append('<option value="' + role + '">' + role + '</option>');
-                    });
+                    if (roles.length === 0) {
+                        $('#rol_solicitante').append('<option value="" disabled>No hay roles disponibles</option>');
+                    } else {
+                        roles.forEach(function(role) {
+                            $('#rol_solicitante').append('<option value="' + role + '">' + role + '</option>');
+                        });
+                    }
 
                     // Filtrar los solicitantes correspondientes al proyecto seleccionado
                     var solicitantes = data.solicitantes.filter(function(solicitante) {
@@ -40,8 +44,54 @@ $(document).ready(function() {
                     solicitanteSelect.append('<option value="" disabled selected>Seleccione un solicitante</option>'); // Opción predeterminada
 
                     // Agregar los solicitantes como opciones en el select
-                    solicitantes.forEach(function(solicitante) {
-                        solicitanteSelect.append('<option value="' + solicitante.id + '">' + solicitante.nombre + ' (' + solicitante.rol_en_proyecto + ')</option>');
+                    if (solicitantes.length === 0) {
+                        solicitanteSelect.append('<option value="" disabled>No hay solicitantes disponibles</option>');
+                    } else {
+                        solicitantes.forEach(function(solicitante) {
+                            solicitanteSelect.append('<option value="' + solicitante.id + '">' + solicitante.nombre + ' (' + solicitante.rol_en_proyecto + ')</option>');
+                        });
+                    }
+                }
+            });
+
+            // Este código se ejecuta cuando un solicitante es seleccionado
+            $('#nombre_solicitante').change(function() {
+                var solicitanteId = $(this).val(); // ID del solicitante seleccionado
+
+                // Verificar si se ha seleccionado un solicitante
+                if (solicitanteId) {
+                    // Hacer una solicitud AJAX al servidor para obtener los datos del solicitante
+                    $.ajax({
+                        url: './backend/enviar_peticion_queries.php', // Ruta al archivo PHP que devuelve los datos del solicitante
+                        method: 'POST',
+                        data: {
+                            'solicitante_id': solicitanteId
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response);  // Para verificar la respuesta
+
+                            // Verificar si la respuesta contiene datos del solicitante
+                            if (response && response.telefono_solicitante) {
+                                // Completar el campo 'contacto' con el teléfono del solicitante
+                                $('#contacto').val(response.telefono_solicitante);
+                            } else {
+                                // Si no hay teléfono, vaciar el campo de contacto
+                                $('#contacto').val('');
+                                alert('No se encontró el teléfono del solicitante o la respuesta es incorrecta.');
+                            }
+                            
+                            // Completar otros campos si es necesario
+                            if (response && response.nombre_solicitante && response.rol_en_proyecto) {
+                                $('#nombre_solicitante_display').text(response.nombre_solicitante);
+                                $('#rol_solicitante_display').text(response.rol_en_proyecto);
+                            } else {
+                                alert('No se encontraron otros datos del solicitante.');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error al obtener datos del solicitante:', error);
+                        }
                     });
                 }
             });
@@ -50,6 +100,4 @@ $(document).ready(function() {
             console.error("Error al cargar los proyectos y roles:", error);
         }
     });
-
 });
-

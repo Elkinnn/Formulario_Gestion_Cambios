@@ -66,10 +66,10 @@
             <!-- Los nombres de los solicitantes se agregarán dinámicamente aquí -->
         </select>
     </div>
-            <div class="col-md-6">
-                <label for="contacto" class="form-label">Contacto del Solicitante</label>
-                <input type="text" class="form-control" id="contacto" name="contacto" required>
-            </div>
+    <div class="col-md-6">
+    <label for="contacto" class="form-label">Contacto del Solicitante</label>
+    <input type="text" class="form-control" id="contacto" name="contacto" required>
+</div>
         </div>
 
         <!-- Solicitud de Cambio -->
@@ -110,6 +110,23 @@
                 <label for="costos_estimados" class="form-label">Costos Estimados</label>
                 <input type="text" class="form-control" id="costos_estimados" name="costos_estimados" value="No definido" readonly>
             </div>
+        </div>
+        <!-- Revisión del Cambio (Bloqueada para el usuario) -->
+        <h4 class="text-muted">3.Seguimiento del Cambio </h4>
+        <div class="mb-3">
+            <label for="tipo_cambio" class="form-label">Acciones a Implemetar</label>
+            <input type="text" class="form-control" id="tipo_cambio" name="tipo_cambio" value="No definido" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion_revision" class="form-label">Responsable</label>
+            <textarea class="form-control" id="descripcion_revision" name="descripcion_revision" rows="4" readonly>No definido</textarea>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="cronologia_prevista" class="form-label">Tiempo de Implemetacion</label>
+                <input type="text" class="form-control" id="cronologia_prevista" name="cronologia_prevista" value="No definido" readonly>
+            </div>
+           
         </div>
 
         <!-- Aprobación (Bloqueada para el usuario) -->
