@@ -48,7 +48,8 @@ $(document).ready(function() {
                         solicitanteSelect.append('<option value="" disabled>No hay solicitantes disponibles</option>');
                     } else {
                         solicitantes.forEach(function(solicitante) {
-                            solicitanteSelect.append('<option value="' + solicitante.id + '">' + solicitante.nombre + ' (' + solicitante.rol_en_proyecto + ')</option>');
+                            // Solo agregar el nombre del solicitante (sin el rol entre paréntesis)
+                            solicitanteSelect.append('<option value="' + solicitante.id + '">' + solicitante.nombre + '</option>');
                         });
                     }
                 }
@@ -81,12 +82,11 @@ $(document).ready(function() {
                                 alert('No se encontró el teléfono del solicitante o la respuesta es incorrecta.');
                             }
                             
-                            // Completar otros campos si es necesario
-                            if (response && response.nombre_solicitante && response.rol_en_proyecto) {
-                                $('#nombre_solicitante_display').text(response.nombre_solicitante);
-                                $('#rol_solicitante_display').text(response.rol_en_proyecto);
+                            // Completar el campo de rol
+                            if (response && response.rol_en_proyecto) {
+                                $('#rol_solicitante').val(response.rol_en_proyecto); // Mostrar el rol en el campo de solo lectura
                             } else {
-                                alert('No se encontraron otros datos del solicitante.');
+                                alert('No se encontró el rol del solicitante.');
                             }
                         },
                         error: function(xhr, status, error) {

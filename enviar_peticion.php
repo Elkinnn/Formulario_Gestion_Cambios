@@ -51,24 +51,21 @@
     </select>
 </div>
 <div class="col-md-6">
-    <label for="rol_solicitante" class="form-label">Rol Solicitante</label>
-    <select class="form-select" id="rol_solicitante" name="rol_solicitante" required>
-        <option value="" disabled selected>Seleccione un rol</option>
-        <!-- Los roles se agregarán dinámicamente aquí -->
-    </select>
+<label for="rol_solicitante" class="form-label">Rol Solicitante</label>
+<input type="text" class="form-control" id="rol_solicitante" name="rol_solicitante" readonly>
 </div>
         </div>
         <div class="row mb-3">
         <div class="col-md-6">
-        <label for="nombre_solicitante" class="form-label">Nombre del Solicitante</label>
-        <select class="form-select" id="nombre_solicitante" name="nombre_solicitante" required>
-            <option value="" disabled selected>Seleccione un solicitante</option>
-            <!-- Los nombres de los solicitantes se agregarán dinámicamente aquí -->
-        </select>
+        <label for="nombre_solicitante" class="form-label">Nombre Solicitante</label>
+<select class="form-select" id="nombre_solicitante" name="nombre_solicitante" required>
+    <option value="" disabled selected>Seleccione un solicitante</option>
+    <!-- Los solicitantes se agregarán dinámicamente aquí -->
+</select>
     </div>
     <div class="col-md-6">
     <label for="contacto" class="form-label">Contacto del Solicitante</label>
-    <input type="text" class="form-control" id="contacto" name="contacto" required>
+    <input type="text" class="form-control" id="contacto" name="contacto"readonly>
 </div>
         </div>
 
