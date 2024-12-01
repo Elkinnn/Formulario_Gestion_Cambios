@@ -48,7 +48,6 @@ $(document).ready(function() {
                         solicitanteSelect.append('<option value="" disabled>No hay solicitantes disponibles</option>');
                     } else {
                         solicitantes.forEach(function(solicitante) {
-                            // Solo agregar el nombre del solicitante (sin el rol entre paréntesis)
                             solicitanteSelect.append('<option value="' + solicitante.id + '">' + solicitante.nombre + '</option>');
                         });
                     }
@@ -99,5 +98,54 @@ $(document).ready(function() {
         error: function(xhr, status, error) {
             console.error("Error al cargar los proyectos y roles:", error);
         }
+    });
+// Función para mostrar alertas personalizadas
+function mostrarAlerta(tipo, mensaje) {
+    // Crear la alerta
+    var alert = $('<div class="alert alert-' + tipo + ' alert-dismissible fade show" role="alert"></div>');
+
+    // Agregar el contenido a la alerta
+    alert.append('<strong>' + tipo.charAt(0).toUpperCase() + tipo.slice(1) + '!</strong> ' + mensaje);
+    alert.append('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+
+    // Agregar la alerta al contenedor
+    $('#alert-container').append(alert);
+
+    // Usar jQuery para manejar el cierre de la alerta al hacer clic en la "X"
+    alert.find('.close').click(function() {
+        alert.remove(); // Elimina la alerta del DOM
+    });
+}
+
+// Aquí va el resto de tu código JavaScript
+$(document).ready(function() {
+    // ... Tu lógica AJAX y otras funciones
+});
+    // Limpiar los campos al enviar el formulario
+    $('form').submit(function(event) {
+        event.preventDefault();  // Evitar que el formulario se envíe de manera tradicional
+
+        // Establecer el estado en "Pendiente" al enviar
+        $('#estado_solicitud').val('Pendiente');
+        
+        $.ajax({
+            url: './backend/enviar_peticion_queries.php',  // Ruta al archivo PHP que maneja la solicitud
+            method: 'POST',
+            data: $('form').serialize(),  // Serializa todos los datos del formulario
+            success: function(response) {
+                // Mostrar una alerta indicando que la solicitud se ha enviado
+                mostrarAlerta('success', 'Solicitud enviada exitosamente.');
+        
+                // Limpiar todos los campos después de enviar
+                $('form')[0].reset(); // Resetea el formulario
+                $('#estado_solicitud').val('Pendiente'); // Restablecer el estado a Pendiente
+            },
+            error: function(xhr, status, error) {
+                console.error('Error al enviar la solicitud:', error);
+                
+                // Mostrar una alerta de error
+                mostrarAlerta('danger', 'Hubo un problema al enviar la solicitud. Por favor, intente de nuevo.');
+            }
+        });
     });
 });

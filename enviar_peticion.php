@@ -28,7 +28,7 @@
             </div>
         </div>
     </nav>
-
+    
     <div class="container mt-5">
     <h2 class="text-center">Formulario de Solicitud y Control de Cambios</h2>
     <form action="backend/enviar_peticion_queries.php" method="POST">
@@ -140,11 +140,16 @@
             <label for="fecha_aprobacion" class="form-label">Fecha de Aprobación</label>
             <input type="text" class="form-control" id="fecha_aprobacion" name="fecha_aprobacion" value="No definido" readonly>
         </div>
-        <input type="hidden" name="estado" value="Pendiente">
+        <div class="col-md-6">
+    <label for="estado_solicitud" class="form-label">Estado de la Solicitud</label>
+    <input type="text" name="estado" value="Pendiente"readonly>
+</div>
+        
+        
 
         <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
     </form>
-    
+    <div id="alert-container"></div>
 </div>
 
 </body>

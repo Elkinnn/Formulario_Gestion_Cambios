@@ -57,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Verificar si el nombre del proyecto fue recibido correctamente
     if (!$nombre_proyecto) {
-        die("Error: No se ha recibido el nombre del proyecto.");
+        echo json_encode(['error' => 'No se ha recibido el nombre del proyecto.']);
+        exit;
     }
 
     // Obtener el ID del proyecto
@@ -70,14 +71,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     // Verificar si el proyecto fue encontrado
     if (!$proyecto) {
-        die("Error: Proyecto no encontrado.");
+        echo json_encode(['error' => 'Proyecto no encontrado.']);
+        exit;
     }
 
     $id_proyecto = $proyecto['id'];
 
     // Verificar si el nombre del solicitante fue recibido correctamente
     if (!$nombre_solicitante) {
-        die("Error: No se ha recibido el nombre del solicitante.");
+        echo json_encode(['error' => 'No se ha recibido el nombre del solicitante.']);
+        exit;
     }
 
     // Obtener el ID del solicitante basado en el rol y el proyecto
@@ -97,7 +100,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id_solicitante = $usuario['id'];  // Obtener el ID del solicitante
         $contacto = $usuario['telefono'];  // Obtener el teléfono del solicitante
     } else {
-        die("Error: Solicitante no encontrado.");
+        echo json_encode(['error' => 'Solicitante no encontrado.']);
+        exit;
     }
 
     // Preparar la consulta para insertar la solicitud en la tabla solicitudes
@@ -114,9 +118,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Ejecutar la inserción
     if ($stmt->execute()) {
-        echo "Solicitud enviada exitosamente.";
+        echo json_encode(['message' => 'Solicitud enviada exitosamente.']);
     } else {
-        echo "Error al enviar la solicitud: " . $stmt->error;
+        echo json_encode(['error' => 'Error al enviar la solicitud: ' . $stmt->error]);
     }
 
     // Cerrar la conexión
@@ -132,7 +136,6 @@ $sql = "
     WHERE u.rol = 'Solicitante'
 ";
 
-// Ejecutar la consulta
 $result = $conn->query($sql);
 
 // Crear arrays para los proyectos y roles, y los usuarios y roles
