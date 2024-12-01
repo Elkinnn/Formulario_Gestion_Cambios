@@ -5,8 +5,6 @@ require_once('./config/config.php');
 // Obtener el ID de la solicitud desde la URL
 $id = $_GET['id'];
 
-// Consultar la solicitud en la base de datos
-// Consultar la solicitud en la base de datos
 $query = "SELECT * FROM solicitudes WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id);
