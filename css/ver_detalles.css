@@ -55,3 +55,83 @@ footer {
         padding: 10px 0;
     }
 }
+
+/* Estilo del formulario */
+.container form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de las etiquetas y campos */
+.form-label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #555;
+}
+
+.form-control,
+.form-select,
+textarea {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Espaciado entre los elementos del formulario */
+.row.mb-4 {
+    margin-bottom: 20px;
+}
+
+.mb-4 {
+    margin-bottom: 20px;
+}
+
+/* Estilo del encabezado de cada sección */
+h4 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-top: 30px;
+}
+
+/* Estilo para los botones */
+.btn-primary {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+}
+
+/* Centrado del botón */
+.text-center button {
+    width: 200px;
+    margin-top: 20px;
+}
+
+/* Estilo para los campos de solo lectura */
+input[readonly], textarea[readonly] {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #888;
+    cursor: not-allowed;
+}
+
