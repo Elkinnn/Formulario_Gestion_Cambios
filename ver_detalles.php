@@ -168,6 +168,9 @@
         </form>
     </div>
 
+    <footer>
+        <p>&copy; 2024 Gestión de Cambios. Todos los derechos reservados.</p>
+    </footer>
 </body>
 
 </html>

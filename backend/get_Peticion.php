@@ -5,7 +5,14 @@ require_once('./config/config.php');
 // Obtener el ID de la solicitud desde la URL
 $id = $_GET['id'];
 
-$query = "SELECT * FROM solicitudes WHERE id = ?";
+// Consulta para obtener los detalles de la solicitud y los datos relacionados
+$query = "
+    SELECT s.*, p.nombre AS nombre_proyecto, u.nombre AS nombre_solicitante, u.telefono AS contacto_solicitante
+    FROM solicitudes s
+    JOIN proyectos p ON s.id_proyecto = p.id
+    JOIN usuarios u ON s.id_solicitante = u.id
+    WHERE s.id = ?
+";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -16,5 +23,4 @@ $peticion = $result->fetch_assoc();
 if (!$peticion) {
     die('Solicitud no encontrada.');
 }
-
 ?>
