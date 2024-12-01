@@ -1,6 +1,9 @@
 <?php
 // Conexión a la base de datos (ajusta los parámetros)
-require_once('./config/config.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Formulario_Gestion_Cambios/config/config.php');
+
+
+
 
 // Obtener el ID de la solicitud desde la URL
 $id = $_GET['id'];
@@ -23,7 +26,9 @@ $peticion = $result->fetch_assoc();
 
 // Asegurarse de que la consulta fue exitosa
 if (!$peticion) {
-    die('Solicitud no encontrada.');
+    // Si no se encuentra la solicitud, devolver un error en formato JSON
+    echo json_encode(['error' => 'Solicitud no encontrada.']);
+    exit;
 }
 
 // Obtener miembros del proyecto (excluyendo al cliente) para "Aprobado por"
@@ -44,4 +49,13 @@ while ($row = $result_aprobadores->fetch_assoc()) {
 
 // Cerrar la conexión
 $conn->close();
+
+// Crear el arreglo de respuesta con los datos de la petición y los aprobadores
+$response = [
+    'peticion' => $peticion,
+    'aprobadores' => $aprobadores
+];
+
+// Devolver la respuesta en formato JSON
+echo json_encode($response);
 ?>

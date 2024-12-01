@@ -1,60 +1,112 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Obtener el ID de la solicitud desde la URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-
-    let aprobadoresData = [];  // Variable para almacenar la lista de aprobadores
-
-    // Cargar los detalles de la solicitud
-    fetch(`backend/get_Peticion.php?id=${id}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al obtener los detalles de la solicitud');
-            }
-            return response.json();
-        })
+    // Fetch data from the backend or JSON file
+    fetch('backend/get_Peticion.php?id=${id}')
+        .then(response => response.json())
         .then(data => {
-            if (data.peticion) {
-                // Mostrar detalles de la solicitud
-                document.getElementById('nombre_solicitante').textContent = data.peticion.nombre_solicitante;
-                document.getElementById('contacto_solicitante').textContent = data.peticion.contacto_solicitante;
-                document.getElementById('nombre_proyecto').textContent = data.peticion.nombre_proyecto;
-                document.getElementById('rol_solicitante').textContent = data.peticion.rol_solicitante;
+            if (data.success) {
+                const peticion = data.peticion;
 
-                // Llenar el campo "Aprobado por" con los miembros y líderes del proyecto
-                const aprobadoSelect = document.getElementById('aprobado_por');
-                aprobadoresData = data.aprobadores || [];  // Guardar los aprobadores en una variable externa
-
-                // Limpiar las opciones previas
-                aprobadoSelect.innerHTML = '';
-
-                // Agregar los nuevos aprobadores al select
-                aprobadoresData.forEach(aprobador => {
-                    const option = document.createElement('option');
-                    option.value = aprobador.id;
-                    option.textContent = `${aprobador.nombre} - ${aprobador.rol_en_proyecto}`;
-                    aprobadoSelect.appendChild(option);
-                });
-
-                // Si ya tiene un aprobador seleccionado, establecerlo
-                if (data.peticion.aprobado_por) {
-                    document.getElementById('aprobado_por').value = data.peticion.aprobado_por;
-                    document.getElementById('rol_en_aprobacion').value = data.peticion.rol_en_aprobacion;
+                // Verifica si el objeto existe antes de modificar sus valores
+                const nombreSolicitante = document.getElementById('nombre_solicitante');
+                if (nombreSolicitante) {
+                    nombreSolicitante.value = peticion.nombre_solicitante || 'No definido';
                 }
+
+                const contactoSolicitante = document.getElementById('contacto');
+                if (contactoSolicitante) {
+                    contactoSolicitante.value = peticion.contacto_solicitante || 'No definido';
+                }
+
+                const nombreProyecto = document.getElementById('nombre_proyecto');
+                if (nombreProyecto) {
+                    nombreProyecto.value = peticion.nombre_proyecto || 'No definido';
+                }
+
+                const rolSolicitante = document.getElementById('rol_solicitante');
+                if (rolSolicitante) {
+                    rolSolicitante.value = peticion.rol_solicitante || 'No definido';
+                }
+
+                const descripcionCambio = document.getElementById('descripcion_cambio');
+                if (descripcionCambio) {
+                    descripcionCambio.value = peticion.descripcion_cambio || 'No definido';
+                }
+
+                const prioridad = document.getElementById('prioridad');
+                if (prioridad) {
+                    prioridad.value = peticion.prioridad || 'No definido';
+                }
+
+                const razon = document.getElementById('razon');
+                if (razon) {
+                    razon.value = peticion.razon_cambio || 'No definido';
+                }
+
+                const tipoCambio = document.getElementById('tipo_cambio');
+                if (tipoCambio) {
+                    tipoCambio.value = peticion.tipo_cambio || 'No definido';
+                }
+
+                const descripcionRevision = document.getElementById('descripcion_revision');
+                if (descripcionRevision) {
+                    descripcionRevision.value = peticion.descripcion_revision || 'No definido';
+                }
+
+                const cronologiaPrevista = document.getElementById('cronologia_prevista');
+                if (cronologiaPrevista) {
+                    cronologiaPrevista.value = peticion.cronologia_prevista || 'No definido';
+                }
+
+                const costosEstimados = document.getElementById('costos_estimados');
+                if (costosEstimados) {
+                    costosEstimados.value = peticion.costos_estimados || 'No definido';
+                }
+
+                const accionesImplementar = document.getElementById('acciones_implementar');
+                if (accionesImplementar) {
+                    accionesImplementar.value = peticion.acciones_implementar || 'No definido';
+                }
+
+                const responsable = document.getElementById('responsable');
+                if (responsable) {
+                    responsable.value = peticion.responsable || 'No definido';
+                }
+
+                const tiempoImplementacion = document.getElementById('tiempo_implementacion');
+                if (tiempoImplementacion) {
+                    tiempoImplementacion.value = peticion.tiempo_implementacion || 'No definido';
+                }
+
+                const rolAprobador = document.getElementById('rol_aprobador');
+                if (rolAprobador) {
+                    rolAprobador.value = peticion.rol_aprobador || 'No definido';
+                }
+
+                const aprobadoPor = document.getElementById('aprobado_por');
+                if (aprobadoPor) {
+                    // Si hay un valor para aprobado_por, selecciona la opción correspondiente
+                    const options = aprobadoPor.querySelectorAll('option');
+                    options.forEach(option => {
+                        if (option.value == peticion.aprobado_por) {
+                            option.selected = true;
+                        }
+                    });
+                }
+
+                const fechaAprobacion = document.getElementById('fecha_aprobacion');
+                if (fechaAprobacion) {
+                    fechaAprobacion.value = peticion.fecha_aprobacion || 'No definido';
+                }
+
+                const estado = document.getElementById('estado');
+                if (estado) {
+                    estado.value = peticion.estado || 'Pendiente';
+                }
+            } else {
+                console.error('Error al obtener los detalles de la solicitud');
             }
         })
-        .catch(error => console.error('Error al cargar la solicitud:', error));
-
-    // Cambiar el rol en el campo "Rol en Aprobación" cuando se selecciona un aprobador
-    document.getElementById('aprobado_por').addEventListener('change', function () {
-        const aprobadoId = this.value;
-
-        // Buscar el aprobador seleccionado por su id
-        const seleccionado = aprobadoresData.find(aprobador => aprobador.id == aprobadoId);
-
-        // Si el aprobador existe, actualizar el rol en aprobación
-        if (seleccionado) {
-            document.getElementById('rol_en_aprobacion').value = seleccionado.rol_en_proyecto;
-        }
-    });
+        .catch(error => {
+            console.error('Error al obtener los detalles:', error);
+        });
 });
