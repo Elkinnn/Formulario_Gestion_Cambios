@@ -102,28 +102,25 @@
             <div class="mb-3">
                 <label for="tipo_cambio" class="form-label">Tipo</label>
                 <input type="text" class="form-control" id="tipo_cambio" name="tipo_cambio"
-                    value="<?php echo isset($peticion['tipo_cambio']) ? $peticion['tipo_cambio'] : 'No definido'; ?>"
-                    readonly>
+                    value="<?php echo isset($peticion['tipo_cambio']) ? $peticion['tipo_cambio'] : ''; ?>">
             </div>
 
             <div class="mb-3">
                 <label for="descripcion_revision" class="form-label">Descripción</label>
-                <textarea class="form-control" id="descripcion_revision" name="descripcion_revision" rows="4"
-                    readonly><?php echo isset($peticion['descripcion_revision']) ? $peticion['descripcion_revision'] : 'No definido'; ?></textarea>
+                <textarea class="form-control" id="descripcion_revision" name="descripcion_revision"
+                    rows="4"><?php echo isset($peticion['descripcion_revision']) ? $peticion['descripcion_revision'] : ''; ?></textarea>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="cronologia_prevista" class="form-label">Cronología Prevista</label>
                     <input type="text" class="form-control" id="cronologia_prevista" name="cronologia_prevista"
-                        value="<?php echo isset($peticion['cronologia_prevista']) ? $peticion['cronologia_prevista'] : 'No definido'; ?>"
-                        readonly>
+                        value="<?php echo isset($peticion['cronologia_prevista']) ? $peticion['cronologia_prevista'] : ''; ?>">
                 </div>
                 <div class="col-md-6">
                     <label for="costos_estimados" class="form-label">Costos Estimados</label>
                     <input type="text" class="form-control" id="costos_estimados" name="costos_estimados"
-                        value="<?php echo isset($peticion['costos_estimados']) ? $peticion['costos_estimados'] : 'No definido'; ?>"
-                        readonly>
+                        value="<?php echo isset($peticion['costos_estimados']) ? $peticion['costos_estimados'] : ''; ?>">
                 </div>
             </div>
 
@@ -131,23 +128,21 @@
             <h4 class="text-muted">3. Seguimiento del Cambio</h4>
             <div class="mb-3">
                 <label for="acciones_implementar" class="form-label">Acciones a Implementar</label>
-                <textarea class="form-control" id="acciones_implementar" name="acciones_implementar" rows="4"
-                    readonly><?php echo isset($peticion['acciones_implementar']) ? $peticion['acciones_implementar'] : 'No definido'; ?></textarea>
+                <textarea class="form-control" id="acciones_implementar" name="acciones_implementar"
+                    rows="4"><?php echo isset($peticion['acciones_implementar']) ? $peticion['acciones_implementar'] : ''; ?></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="responsable" class="form-label">Responsable</label>
                 <input type="text" class="form-control" id="responsable" name="responsable"
-                    value="<?php echo isset($peticion['responsable']) ? $peticion['responsable'] : 'No definido'; ?>"
-                    readonly>
+                    value="<?php echo isset($peticion['responsable']) ? $peticion['responsable'] : ''; ?>">
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="tiempo_implementacion" class="form-label">Tiempo de Implementación</label>
                     <input type="text" class="form-control" id="tiempo_implementacion" name="tiempo_implementacion"
-                        value="<?php echo isset($peticion['tiempo_implementacion']) ? $peticion['tiempo_implementacion'] : 'No definido'; ?>"
-                        readonly>
+                        value="<?php echo isset($peticion['tiempo_implementacion']) ? $peticion['tiempo_implementacion'] : ''; ?>">
                 </div>
             </div>
 
@@ -156,20 +151,17 @@
             <div class="mb-3">
                 <label for="rol_aprobador" class="form-label">Rol en Aprobación</label>
                 <input type="text" class="form-control" id="rol_aprobador" name="rol_aprobador"
-                    value="<?php echo isset($peticion['rol_aprobador']) ? $peticion['rol_aprobador'] : 'No definido'; ?>"
-                    readonly>
+                    value="<?php echo isset($peticion['rol_aprobador']) ? $peticion['rol_aprobador'] : ''; ?>">
             </div>
             <div class="mb-3">
                 <label for="aprobado_por" class="form-label">Aprobado por</label>
                 <input type="text" class="form-control" id="aprobado_por" name="aprobado_por"
-                    value="<?php echo isset($peticion['aprobado_por']) ? $peticion['aprobado_por'] : 'No definido'; ?>"
-                    readonly>
+                    value="<?php echo isset($peticion['aprobado_por']) ? $peticion['aprobado_por'] : ''; ?>">
             </div>
             <div class="mb-3">
                 <label for="fecha_aprobacion" class="form-label">Fecha de Aprobación</label>
                 <input type="text" class="form-control" id="fecha_aprobacion" name="fecha_aprobacion"
-                    value="<?php echo isset($peticion['fecha_aprobacion']) ? $peticion['fecha_aprobacion'] : 'No definido'; ?>"
-                    readonly>
+                    value="<?php echo isset($peticion['fecha_aprobacion']) ? $peticion['fecha_aprobacion'] : ''; ?>">
             </div>
 
             <!-- Estado de la Petición -->
