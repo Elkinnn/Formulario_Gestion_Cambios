@@ -25,4 +25,23 @@ $peticion = $result->fetch_assoc();
 if (!$peticion) {
     die('Solicitud no encontrada.');
 }
+
+// Obtener miembros del proyecto (excluyendo al cliente)
+$query_aprobadores = "
+    SELECT u.id, u.nombre, up.rol_en_proyecto
+    FROM usuarios u
+    JOIN usuarios_proyectos up ON u.id = up.id_usuario
+    WHERE up.id_proyecto = ? AND up.rol_en_proyecto != 'Cliente'
+";
+$stmt_aprobadores = $conn->prepare($query_aprobadores);
+$stmt_aprobadores->bind_param("i", $peticion['id_proyecto']);
+$stmt_aprobadores->execute();
+$result_aprobadores = $stmt_aprobadores->get_result();
+$aprobadores = [];
+while ($row = $result_aprobadores->fetch_assoc()) {
+    $aprobadores[] = $row;
+}
+
+// Cerrar la conexión
+$conn->close();
 ?>

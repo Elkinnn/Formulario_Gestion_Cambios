@@ -101,8 +101,10 @@
 
             <div class="mb-3">
                 <label for="tipo_cambio" class="form-label">Tipo</label>
-                <input type="text" class="form-control" id="tipo_cambio" name="tipo_cambio"
-                    value="<?php echo isset($peticion['tipo_cambio']) ? $peticion['tipo_cambio'] : ''; ?>">
+                <select class="form-select" id="tipo_cambio" name="tipo_cambio">
+                    <option value="Correctivo" <?php echo (isset($peticion['tipo_cambio']) && $peticion['tipo_cambio'] == 'Correctivo') ? 'selected' : ''; ?>>Correctivo</option>
+                    <option value="Mejora" <?php echo (isset($peticion['tipo_cambio']) && $peticion['tipo_cambio'] == 'Mejora') ? 'selected' : ''; ?>>Mejora</option>
+                </select>
             </div>
 
             <div class="mb-3">
@@ -151,12 +153,13 @@
             <div class="mb-3">
                 <label for="rol_aprobador" class="form-label">Rol en Aprobación</label>
                 <input type="text" class="form-control" id="rol_aprobador" name="rol_aprobador"
-                    value="<?php echo isset($peticion['rol_aprobador']) ? $peticion['rol_aprobador'] : ''; ?>">
+                    value="<?php echo isset($peticion['rol_aprobador']) ? $peticion['rol_aprobador'] : ''; ?>" readonly>
             </div>
             <div class="mb-3">
                 <label for="aprobado_por" class="form-label">Aprobado por</label>
-                <input type="text" class="form-control" id="aprobado_por" name="aprobado_por"
-                    value="<?php echo isset($peticion['aprobado_por']) ? $peticion['aprobado_por'] : ''; ?>">
+                <select class="form-select" id="aprobado_por" name="aprobado_por">
+                    <!-- Opciones se cargarán desde la base de datos -->
+                </select>
             </div>
             <div class="mb-3">
                 <label for="fecha_aprobacion" class="form-label">Fecha de Aprobación</label>
@@ -182,6 +185,7 @@
     <footer>
         <p>&copy; 2024 Gestión de Cambios. Todos los derechos reservados.</p>
     </footer>
+    <script src="js/ver_detalles.js"></script>
 </body>
 
 </html>
