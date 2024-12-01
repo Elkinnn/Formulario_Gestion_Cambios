@@ -64,7 +64,7 @@
                 <div class="col-md-6">
                     <label for="contacto" class="form-label">Contacto del Solicitante</label>
                     <input type="text" class="form-control" id="contacto" name="contacto"
-                        value="<?php echo isset($peticion['contacto']) ? $peticion['contacto'] : 'No definido'; ?>"
+                        value="<?php echo isset($peticion['contacto_solicitante']) ? $peticion['contacto_solicitante'] : 'No definido'; ?>"
                         readonly>
                 </div>
             </div>
@@ -88,8 +88,8 @@
             <div class="mb-3">
                 <label for="razon" class="form-label">Razón del Cambio</label>
                 <textarea class="form-control" id="razon" name="razon" rows="4" readonly>
-                    <?php echo isset($peticion['razon']) ? $peticion['razon'] : 'No definido'; ?>
-                </textarea>
+        <?php echo isset($peticion['razon_cambio']) ? $peticion['razon_cambio'] : 'No definido'; ?>
+    </textarea>
             </div>
 
             <!-- Revisión del Cambio -->
