@@ -33,7 +33,6 @@
     <div class="container mt-5">
         <h2 class="text-center">Lista de Peticiones</h2>
 
-        <!-- Tabla de peticiones -->
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -47,7 +46,6 @@
                 </tr>
             </thead>
             <tbody id="tabla_peticiones">
-                <!-- Las filas de las peticiones se agregarán dinámicamente aquí -->
             </tbody>
         </table>
     </div>
@@ -57,8 +55,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Llamada al archivo PHP que obtiene las peticiones -->
     <script src="js/revisar_peticion.js"> </script>
 </body>
 
