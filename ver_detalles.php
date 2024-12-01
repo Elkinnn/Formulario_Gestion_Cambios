@@ -94,6 +94,14 @@
 
             <!-- Revisión del Cambio -->
             <h4 class="text-muted">2. Revisión del Cambio</h4>
+
+            <div class="mb-3">
+                <label for="tipo_cambio" class="form-label">Tipo</label>
+                <input type="text" class="form-control" id="tipo_cambio" name="tipo_cambio"
+                    value="<?php echo isset($peticion['tipo_cambio']) ? $peticion['tipo_cambio'] : 'No definido'; ?>"
+                    readonly>
+            </div>
+
             <div class="mb-3">
                 <label for="descripcion_revision" class="form-label">Descripción</label>
                 <textarea class="form-control" id="descripcion_revision" name="descripcion_revision" rows="4"
@@ -121,6 +129,13 @@
                 <label for="acciones_implementar" class="form-label">Acciones a Implementar</label>
                 <textarea class="form-control" id="acciones_implementar" name="acciones_implementar" rows="4"
                     readonly><?php echo isset($peticion['acciones_implementar']) ? $peticion['acciones_implementar'] : 'No definido'; ?></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="responsable" class="form-label">Responsable</label>
+                <input type="text" class="form-control" id="responsable" name="responsable"
+                    value="<?php echo isset($peticion['responsable']) ? $peticion['responsable'] : 'No definido'; ?>"
+                    readonly>
             </div>
 
             <div class="row mb-3">
