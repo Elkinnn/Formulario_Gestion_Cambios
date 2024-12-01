@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles de Petición</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="css/ver_detalles.css" rel="stylesheet">
 </head>
@@ -16,6 +17,9 @@
     // Incluir el archivo que obtiene la solicitud
     require_once('backend/get_peticion.php');
     ?>
+    <a href="revisar_peticion.php" class="btn btn-outline-secondary btn-regresar">
+        <i class="bi bi-arrow-left-circle"></i> Regresar
+    </a>
 
     <div class="container mt-5">
         <h2 class="text-center">Detalles de la Solicitud</h2>
