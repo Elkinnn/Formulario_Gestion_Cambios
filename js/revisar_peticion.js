@@ -1,4 +1,3 @@
-// Función para obtener y mostrar las peticiones
 fetch('./backend/revisar_peticion_queries.php')
 .then(response => response.json())
 .then(data => {
