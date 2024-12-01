@@ -159,6 +159,13 @@
                 <label for="aprobado_por" class="form-label">Aprobado por</label>
                 <select class="form-select" id="aprobado_por" name="aprobado_por">
                     <!-- Opciones se cargarán desde la base de datos -->
+                    <?php
+                    if (isset($aprobadores)) {
+                        foreach ($aprobadores as $aprobador) {
+                            echo "<option value='" . $aprobador['id'] . "' " . (isset($peticion['aprobado_por']) && $peticion['aprobado_por'] == $aprobador['id'] ? 'selected' : '') . ">" . $aprobador['nombre'] . "</option>";
+                        }
+                    }
+                    ?>
                 </select>
             </div>
             <div class="mb-3">

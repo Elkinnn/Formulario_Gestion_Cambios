@@ -26,7 +26,7 @@ if (!$peticion) {
     die('Solicitud no encontrada.');
 }
 
-// Obtener miembros del proyecto (excluyendo al cliente)
+// Obtener miembros del proyecto (excluyendo al cliente) para "Aprobado por"
 $query_aprobadores = "
     SELECT u.id, u.nombre, up.rol_en_proyecto
     FROM usuarios u
