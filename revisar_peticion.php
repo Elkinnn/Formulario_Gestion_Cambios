@@ -43,6 +43,7 @@
                     <th scope="col">Fecha de Solicitud</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Acciones</th>
+                    
                 </tr>
             </thead>
             <tbody id="tabla_peticiones">
