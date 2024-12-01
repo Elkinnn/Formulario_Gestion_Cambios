@@ -132,6 +132,27 @@
                 </div>
             </div>
 
+            <!-- Aprobación -->
+            <h4 class="text-muted">Aprobación</h4>
+            <div class="mb-3">
+                <label for="rol_aprobador" class="form-label">Rol en Aprobación</label>
+                <input type="text" class="form-control" id="rol_aprobador" name="rol_aprobador"
+                    value="<?php echo isset($peticion['rol_aprobador']) ? $peticion['rol_aprobador'] : 'No definido'; ?>"
+                    readonly>
+            </div>
+            <div class="mb-3">
+                <label for="aprobado_por" class="form-label">Aprobado por</label>
+                <input type="text" class="form-control" id="aprobado_por" name="aprobado_por"
+                    value="<?php echo isset($peticion['aprobado_por']) ? $peticion['aprobado_por'] : 'No definido'; ?>"
+                    readonly>
+            </div>
+            <div class="mb-3">
+                <label for="fecha_aprobacion" class="form-label">Fecha de Aprobación</label>
+                <input type="text" class="form-control" id="fecha_aprobacion" name="fecha_aprobacion"
+                    value="<?php echo isset($peticion['fecha_aprobacion']) ? $peticion['fecha_aprobacion'] : 'No definido'; ?>"
+                    readonly>
+            </div>
+
             <!-- Estado de la Petición -->
             <div class="mb-3">
                 <label for="estado" class="form-label">Estado de la Petición</label>
@@ -144,7 +165,6 @@
 
             <button type="submit" class="btn btn-primary">Actualizar Solicitud</button>
             <input type="hidden" name="id" value="<?php echo $peticion['id']; ?>">
-
         </form>
     </div>
 
