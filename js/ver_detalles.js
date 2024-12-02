@@ -1,85 +1,92 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Fetch data from the backend or JSON file
-    fetch('backend/get_Peticion.php?id=${id}')
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id'); 
+
+
+    console.log(id);
+    fetch(`backend/get_Peticion.php?id=${id}`)
+
+
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             if (data.success) {
                 const peticion = data.peticion;
 
                 // Verifica si el objeto existe antes de modificar sus valores
                 const nombreSolicitante = document.getElementById('nombre_solicitante');
                 if (nombreSolicitante) {
-                    nombreSolicitante.value = peticion.nombre_solicitante || 'No definido';
+                    nombreSolicitante.value = peticion.nombre_solicitante || '';
                 }
 
                 const contactoSolicitante = document.getElementById('contacto');
                 if (contactoSolicitante) {
-                    contactoSolicitante.value = peticion.contacto_solicitante || 'No definido';
+                    contactoSolicitante.value = peticion.contacto_solicitante || '';
                 }
 
                 const nombreProyecto = document.getElementById('nombre_proyecto');
                 if (nombreProyecto) {
-                    nombreProyecto.value = peticion.nombre_proyecto || 'No definido';
+                    nombreProyecto.value = peticion.nombre_proyecto || '';
                 }
 
                 const rolSolicitante = document.getElementById('rol_solicitante');
                 if (rolSolicitante) {
-                    rolSolicitante.value = peticion.rol_solicitante || 'No definido';
+                    rolSolicitante.value = peticion.rol_solicitante || '';
                 }
 
                 const descripcionCambio = document.getElementById('descripcion_cambio');
                 if (descripcionCambio) {
-                    descripcionCambio.value = peticion.descripcion_cambio || 'No definido';
+                    descripcionCambio.value = peticion.descripcion_cambio || '';
                 }
 
                 const prioridad = document.getElementById('prioridad');
                 if (prioridad) {
-                    prioridad.value = peticion.prioridad || 'No definido';
+                    prioridad.value = peticion.prioridad || '';
                 }
 
                 const razon = document.getElementById('razon');
                 if (razon) {
-                    razon.value = peticion.razon_cambio || 'No definido';
+                    razon.value = peticion.razon_cambio || '';
                 }
 
                 const tipoCambio = document.getElementById('tipo_cambio');
                 if (tipoCambio) {
-                    tipoCambio.value = peticion.tipo_cambio || 'No definido';
+                    tipoCambio.value = peticion.tipo_cambio || '';
                 }
 
                 const descripcionRevision = document.getElementById('descripcion_revision');
                 if (descripcionRevision) {
-                    descripcionRevision.value = peticion.descripcion_revision || 'No definido';
+                    descripcionRevision.value = peticion.descripcion_revision || '';
                 }
 
                 const cronologiaPrevista = document.getElementById('cronologia_prevista');
                 if (cronologiaPrevista) {
-                    cronologiaPrevista.value = peticion.cronologia_prevista || 'No definido';
+                    cronologiaPrevista.value = peticion.cronologia_prevista || '';
                 }
 
                 const costosEstimados = document.getElementById('costos_estimados');
                 if (costosEstimados) {
-                    costosEstimados.value = peticion.costos_estimados || 'No definido';
+                    costosEstimados.value = peticion.costos_estimados || '';
                 }
 
                 const accionesImplementar = document.getElementById('acciones_implementar');
                 if (accionesImplementar) {
-                    accionesImplementar.value = peticion.acciones_implementar || 'No definido';
+                    accionesImplementar.value = peticion.acciones_implementar || '';
                 }
 
                 const responsable = document.getElementById('responsable');
                 if (responsable) {
-                    responsable.value = peticion.responsable || 'No definido';
+                    responsable.value = peticion.responsable || '';
                 }
 
                 const tiempoImplementacion = document.getElementById('tiempo_implementacion');
                 if (tiempoImplementacion) {
-                    tiempoImplementacion.value = peticion.tiempo_implementacion || 'No definido';
+                    tiempoImplementacion.value = peticion.tiempo_implementacion || '';
                 }
 
                 const rolAprobador = document.getElementById('rol_aprobador');
                 if (rolAprobador) {
-                    rolAprobador.value = peticion.rol_aprobador || 'No definido';
+                    rolAprobador.value = peticion.rol_aprobador || '';
                 }
 
                 const aprobadoPor = document.getElementById('aprobado_por');
@@ -95,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const fechaAprobacion = document.getElementById('fecha_aprobacion');
                 if (fechaAprobacion) {
-                    fechaAprobacion.value = peticion.fecha_aprobacion || 'No definido';
+                    fechaAprobacion.value = peticion.fecha_aprobacion || '';
                 }
 
                 const estado = document.getElementById('estado');

@@ -16,6 +16,9 @@
     <?php
     // Incluir el archivo que obtiene la solicitud
     require_once('backend/get_peticion.php');
+    if (isset($peticion)) {
+         // Esto imprimirá los datos de la solicitud
+    }
     ?>
     <a href="revisar_peticion.php" class="btn btn-outline-secondary btn-regresar">
         <i class="bi bi-arrow-left-circle"></i> Regresar
