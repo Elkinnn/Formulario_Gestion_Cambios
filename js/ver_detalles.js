@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id'); 
+    const id = urlParams.get('id');
 
 
     console.log(id);
@@ -86,7 +86,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const rolAprobador = document.getElementById('rol_aprobador');
                 if (rolAprobador) {
-                    rolAprobador.value = peticion.rol_aprobador || '';
+                    // Si existe un rol de aprobador, mostrarlo
+                    if (data.rol_aprobador) {
+                        rolAprobador.value = data.rol_aprobador || ''; // Establece el rol de aprobación
+                    }
                 }
 
                 const aprobadoPor = document.getElementById('aprobado_por');

@@ -2,7 +2,6 @@
 // Conexión a la base de datos (ajusta los parámetros)
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Formulario_Gestion_Cambios/config/config.php');
 
-
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     echo json_encode(['error' => 'ID no proporcionado.']);
     exit;
@@ -61,6 +60,4 @@ $response = [
 ];
 
 echo json_encode($response);
-
-
 ?>

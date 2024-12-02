@@ -153,8 +153,10 @@
             <div class="mb-3">
                 <label for="rol_aprobador" class="form-label">Rol en Aprobación</label>
                 <input type="text" class="form-control" id="rol_aprobador" name="rol_aprobador"
-                    value="<?php echo isset($peticion['rol_aprobador']) ? $peticion['rol_aprobador'] : ''; ?>" readonly>
+                    value="<?php echo isset($rol_aprobador) ? $rol_aprobador : ''; ?>" readonly>
             </div>
+
+
             <div class="mb-3">
                 <label for="aprobado_por" class="form-label">Aprobado por</label>
                 <select class="form-select" id="aprobado_por" name="aprobado_por">
