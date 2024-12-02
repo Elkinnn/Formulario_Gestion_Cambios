@@ -28,12 +28,31 @@ $peticion = $result->fetch_assoc();
 
 // Asegurarse de que la consulta fue exitosa
 if (!$peticion) {
-    // Si no se encuentra la solicitud, devolver un error en formato JSON
     echo json_encode(['error' => 'Solicitud no encontrada.']);
     exit;
 }
 
-// Obtener miembros del proyecto (excluyendo al cliente) para "Aprobado por"
+// Obtener los responsables (Líder y Miembro) del proyecto, excluyendo al cliente
+$query_responsables = "
+    SELECT u.id, u.nombre, up.rol_en_proyecto
+    FROM usuarios u
+    JOIN usuarios_proyectos up ON u.id = up.id_usuario
+    WHERE up.id_proyecto = ? AND up.rol_en_proyecto IN ('Líder', 'Miembro')
+";
+$stmt_responsables = $conn->prepare($query_responsables);
+$stmt_responsables->bind_param("i", $peticion['id_proyecto']);
+$stmt_responsables->execute();
+$result_responsables = $stmt_responsables->get_result();
+$responsables = [];
+while ($row = $result_responsables->fetch_assoc()) {
+    $responsables[] = [
+        'id' => $row['id'],
+        'nombre' => $row['nombre'],
+        'rol_en_proyecto' => $row['rol_en_proyecto']
+    ];
+}
+
+// Obtener los aprobadores del proyecto (excluyendo al cliente)
 $query_aprobadores = "
     SELECT u.id, u.nombre, up.rol_en_proyecto
     FROM usuarios u
@@ -46,17 +65,22 @@ $stmt_aprobadores->execute();
 $result_aprobadores = $stmt_aprobadores->get_result();
 $aprobadores = [];
 while ($row = $result_aprobadores->fetch_assoc()) {
-    $aprobadores[] = $row;
+    $aprobadores[] = [
+        'id' => $row['id'],
+        'nombre' => $row['nombre'],
+        'rol_en_proyecto' => $row['rol_en_proyecto']
+    ];
 }
 
 // Cerrar la conexión
 $conn->close();
 
-// Crear el arreglo de respuesta con los datos de la petición y los aprobadores
+// Crear el arreglo de respuesta con los datos de la petición, aprobadores y responsables
 $response = [
     'success' => true,
     'peticion' => $peticion,
-    'aprobadores' => $aprobadores
+    'responsables' => $responsables, // Añadimos los responsables al array de respuesta
+    'aprobadores' => $aprobadores // Añadimos los aprobadores al array de respuesta
 ];
 
 echo json_encode($response);

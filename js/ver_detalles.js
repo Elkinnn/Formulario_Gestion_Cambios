@@ -2,14 +2,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
 
-
     console.log(id);
     fetch(`backend/get_Peticion.php?id=${id}`)
-
-
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            console.log(data); // Verifica la respuesta de los datos
+
             if (data.success) {
                 const peticion = data.peticion;
 
@@ -112,6 +110,58 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (estado) {
                     estado.value = peticion.estado || 'Pendiente';
                 }
+
+                // Cargar los aprobadores en el dropdown y actualizar el "Rol en Aprobación"
+                const aprobadoPorDropdown = document.getElementById('aprobado_por');
+                if (aprobadoPorDropdown && data.aprobadores) {
+                    aprobadoPorDropdown.innerHTML = ''; // Limpiar las opciones anteriores
+                    data.aprobadores.forEach(aprobador => {
+                        const option = document.createElement('option');
+                        option.value = aprobador.id;
+                        option.textContent = aprobador.nombre;
+                        option.dataset.rol = aprobador.rol_en_proyecto; // Guardar el rol del aprobador
+                        aprobadoPorDropdown.appendChild(option);
+                    });
+
+                    // Actualizar el rol cuando el usuario seleccione un aprobador
+                    aprobadoPorDropdown.addEventListener('change', function () {
+                        const selectedOption = aprobadoPorDropdown.options[aprobadoPorDropdown.selectedIndex];
+                        const rol = selectedOption.dataset.rol;
+                        const rolAprobador = document.getElementById('rol_aprobador');
+                        if (rolAprobador) {
+                            rolAprobador.value = rol || ''; // Actualizar el rol en el campo de "Rol en Aprobación"
+                        }
+                    });
+
+                    // Seleccionar el aprobador y su rol si existe un valor de "aprobado_por"
+                    if (peticion.aprobado_por) {
+                        aprobadoPorDropdown.value = peticion.aprobado_por;
+                        const selectedOption = aprobadoPorDropdown.querySelector(option[value = "${peticion.aprobado_por}"]);
+                        const rol = selectedOption ? selectedOption.dataset.rol : '';
+                        const rolAprobador = document.getElementById('rol_aprobador');
+                        if (rolAprobador) {
+                            rolAprobador.value = rol || ''; // Establecer el rol correspondiente
+                        }
+                    }
+                }
+
+                // Cargar los responsables (Líder y Miembro) en el dropdown de "Responsable"
+                const responsableDropdown = document.getElementById('responsable');
+                if (responsableDropdown && data.responsables) {
+                    responsableDropdown.innerHTML = ''; // Limpiar las opciones anteriores
+                    data.responsables.forEach(responsable => {
+                        const option = document.createElement('option');
+                        option.value = responsable.id;
+                        option.textContent = responsable.nombre;
+                        responsableDropdown.appendChild(option);
+                    });
+
+                    // Si ya hay un responsable seleccionado en la solicitud, seleccionarlo
+                    if (peticion.responsable) {
+                        responsableDropdown.value = peticion.responsable;
+                    }
+                }
+
             } else {
                 console.error('Error al obtener los detalles de la solicitud');
             }

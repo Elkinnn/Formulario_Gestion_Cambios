@@ -101,15 +101,15 @@
 
             <div class="mb-3">
                 <label for="tipo_cambio" class="form-label">Tipo</label>
-                <select class="form-select" id="tipo_cambio" name="tipo_cambio">
-                    <option value="Correctivo" <?php echo (isset($peticion['tipo_cambio']) && $peticion['tipo_cambio'] == 'Correctivo') ? 'selected' : ''; ?>>Correctivo</option>
-                    <option value="Mejora" <?php echo (isset($peticion['tipo_cambio']) && $peticion['tipo_cambio'] == 'Mejora') ? 'selected' : ''; ?>>Mejora</option>
+                <select class="form-select" id="tipo_cambio" name="tipo_cambio" required>
+                    <option value="Correctivo" <?php echo (isset($peticion['tipo_cambio']) && $peticion['tipo_cambio'] == 'Correctivo') ? 'selected' : ''; ?> required>Correctivo</option>
+                    <option value="Mejora" <?php echo (isset($peticion['tipo_cambio']) && $peticion['tipo_cambio'] == 'Mejora') ? 'selected' : ''; ?> required>Mejora</option>
                 </select>
             </div>
 
             <div class="mb-3">
                 <label for="descripcion_revision" class="form-label">Descripción</label>
-                <textarea class="form-control" id="descripcion_revision" name="descripcion_revision"
+                <textarea class="form-control" id="descripcion_revision" name="descripcion_revision" required
                     rows="4"><?php echo isset($peticion['descripcion_revision']) ? $peticion['descripcion_revision'] : ''; ?></textarea>
             </div>
 
@@ -117,12 +117,14 @@
                 <div class="col-md-6">
                     <label for="cronologia_prevista" class="form-label">Cronología Prevista</label>
                     <input type="text" class="form-control" id="cronologia_prevista" name="cronologia_prevista"
-                        value="<?php echo isset($peticion['cronologia_prevista']) ? $peticion['cronologia_prevista'] : ''; ?>">
+                        value="<?php echo isset($peticion['cronologia_prevista']) ? $peticion['cronologia_prevista'] : ''; ?>"
+                        required>
                 </div>
                 <div class="col-md-6">
                     <label for="costos_estimados" class="form-label">Costos Estimados</label>
                     <input type="text" class="form-control" id="costos_estimados" name="costos_estimados"
-                        value="<?php echo isset($peticion['costos_estimados']) ? $peticion['costos_estimados'] : ''; ?>">
+                        value="<?php echo isset($peticion['costos_estimados']) ? $peticion['costos_estimados'] : ''; ?>"
+                        required>
                 </div>
             </div>
 
@@ -130,21 +132,23 @@
             <h4 class="text-muted">3. Seguimiento del Cambio</h4>
             <div class="mb-3">
                 <label for="acciones_implementar" class="form-label">Acciones a Implementar</label>
-                <textarea class="form-control" id="acciones_implementar" name="acciones_implementar"
-                    rows="4"><?php echo isset($peticion['acciones_implementar']) ? $peticion['acciones_implementar'] : ''; ?></textarea>
+                <textarea class="form-control" id="acciones_implementar" name="acciones_implementar" required
+                    rows="4"><?php echo isset($peticion['acciones_implementar']) ? $peticion['acciones_implementar'] : ''; ?> </textarea>
             </div>
 
             <div class="mb-3">
                 <label for="responsable" class="form-label">Responsable</label>
-                <input type="text" class="form-control" id="responsable" name="responsable"
-                    value="<?php echo isset($peticion['responsable']) ? $peticion['responsable'] : ''; ?>">
+                <select class="form-select" id="responsable" name="responsable"
+                    value="<?php echo isset($peticion['responsable']) ? $peticion['responsable'] : ''; ?>" required>
+                </select>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="tiempo_implementacion" class="form-label">Tiempo de Implementación</label>
                     <input type="text" class="form-control" id="tiempo_implementacion" name="tiempo_implementacion"
-                        value="<?php echo isset($peticion['tiempo_implementacion']) ? $peticion['tiempo_implementacion'] : ''; ?>">
+                        value="<?php echo isset($peticion['tiempo_implementacion']) ? $peticion['tiempo_implementacion'] : ''; ?>"
+                        required>
                 </div>
             </div>
 
@@ -159,7 +163,7 @@
 
             <div class="mb-3">
                 <label for="aprobado_por" class="form-label">Aprobado por</label>
-                <select class="form-select" id="aprobado_por" name="aprobado_por">
+                <select class="form-select" id="aprobado_por" name="aprobado_por" required>
                     <!-- Opciones se cargarán desde la base de datos -->
                     <?php
                     if (isset($aprobadores)) {
@@ -173,13 +177,14 @@
             <div class="mb-3">
                 <label for="fecha_aprobacion" class="form-label">Fecha de Aprobación</label>
                 <input type="date" class="form-control" id="fecha_aprobacion" name="fecha_aprobacion"
-                    value="<?php echo isset($peticion['fecha_aprobacion']) ? $peticion['fecha_aprobacion'] : ''; ?>">
+                    value="<?php echo isset($peticion['fecha_aprobacion']) ? $peticion['fecha_aprobacion'] : ''; ?>"
+                    required>
             </div>
 
             <!-- Estado de la Petición -->
             <div class="mb-3">
                 <label for="estado" class="form-label">Estado de la Petición</label>
-                <select class="form-select" id="estado" name="estado">
+                <select class="form-select" id="estado" name="estado" required>
                     <option value="Pendiente" <?php echo (isset($peticion['estado']) && $peticion['estado'] == 'Pendiente') ? 'selected' : ''; ?>>Pendiente</option>
                     <option value="Aprobado" <?php echo (isset($peticion['estado']) && $peticion['estado'] == 'Aprobado') ? 'selected' : ''; ?>>Aprobado</option>
                     <option value="Rechazado" <?php echo (isset($peticion['estado']) && $peticion['estado'] == 'Rechazado') ? 'selected' : ''; ?>>Rechazado</option>
