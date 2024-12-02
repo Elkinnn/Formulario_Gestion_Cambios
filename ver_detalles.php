@@ -16,9 +16,6 @@
     <?php
     // Incluir el archivo que obtiene la solicitud
     require_once('backend/get_peticion.php');
-    if (isset($peticion)) {
-         // Esto imprimirá los datos de la solicitud
-    }
     ?>
     <a href="revisar_peticion.php" class="btn btn-outline-secondary btn-regresar">
         <i class="bi bi-arrow-left-circle"></i> Regresar
@@ -173,7 +170,7 @@
             </div>
             <div class="mb-3">
                 <label for="fecha_aprobacion" class="form-label">Fecha de Aprobación</label>
-                <input type="text" class="form-control" id="fecha_aprobacion" name="fecha_aprobacion"
+                <input type="date" class="form-control" id="fecha_aprobacion" name="fecha_aprobacion"
                     value="<?php echo isset($peticion['fecha_aprobacion']) ? $peticion['fecha_aprobacion'] : ''; ?>">
             </div>
 

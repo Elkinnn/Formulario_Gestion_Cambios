@@ -60,8 +60,6 @@ $response = [
     'aprobadores' => $aprobadores
 ];
 
-// Devolver la respuesta en formato JSON
-// Esto asegura que la respuesta se maneje como JSON
 echo json_encode($response);
 
 
