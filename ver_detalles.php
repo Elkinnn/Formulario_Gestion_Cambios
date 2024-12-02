@@ -186,8 +186,8 @@
                 <label for="estado" class="form-label">Estado de la Petición</label>
                 <select class="form-select" id="estado" name="estado" required>
                     <option value="Pendiente" <?php echo (isset($peticion['estado']) && $peticion['estado'] == 'Pendiente') ? 'selected' : ''; ?>>Pendiente</option>
-                    <option value="Aprobado" <?php echo (isset($peticion['estado']) && $peticion['estado'] == 'Aprobado') ? 'selected' : ''; ?>>Aprobado</option>
-                    <option value="Rechazado" <?php echo (isset($peticion['estado']) && $peticion['estado'] == 'Rechazado') ? 'selected' : ''; ?>>Rechazado</option>
+                    <option value="Aprobada" <?php echo (isset($peticion['estado']) && $peticion['estado'] == 'Aprobada') ? 'selected' : ''; ?>>Aprobada</option>
+                    <option value="Rechazada" <?php echo (isset($peticion['estado']) && $peticion['estado'] == 'Rechazada') ? 'selected' : ''; ?>>Rechazada</option>
                 </select>
             </div>
 

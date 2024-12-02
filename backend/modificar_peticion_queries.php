@@ -32,7 +32,7 @@ if ($stmt = $conn->prepare($query_update_solicitud)) {
     $stmt->execute();
     $stmt->close();
 } else {
-    echo "Error al preparar la consulta de actualización de solicitud: " . $conn;
+    echo "Error al preparar la consulta de actualización de solicitud: " . $conn->error;
     exit();
 }
 
