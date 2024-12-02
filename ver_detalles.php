@@ -116,7 +116,7 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="cronologia_prevista" class="form-label">Cronología Prevista</label>
-                    <input type="text" class="form-control" id="cronologia_prevista" name="cronologia_prevista"
+                    <input type="date" class="form-control" id="cronologia_prevista" name="cronologia_prevista"
                         value="<?php echo isset($peticion['cronologia_prevista']) ? $peticion['cronologia_prevista'] : ''; ?>"
                         required>
                 </div>
@@ -146,7 +146,7 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="tiempo_implementacion" class="form-label">Tiempo de Implementación</label>
-                    <input type="text" class="form-control" id="tiempo_implementacion" name="tiempo_implementacion"
+                    <input type="date" class="form-control" id="tiempo_implementacion" name="tiempo_implementacion"
                         value="<?php echo isset($peticion['tiempo_implementacion']) ? $peticion['tiempo_implementacion'] : ''; ?>"
                         required>
                 </div>
