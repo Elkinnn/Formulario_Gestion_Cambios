@@ -3,6 +3,7 @@ fetch('./backend/revisar_peticion_queries.php')
     .then(data => {
         let peticionesHTML = '';
         data.peticiones.forEach(peticion => {
+            const disabled = peticion.estado === 'Aprobada' || peticion.estado === 'Rechazada' ? 'disabled' : '';
             peticionesHTML += `
             <tr>
                 <td>${peticion.id}</td>
@@ -11,8 +12,7 @@ fetch('./backend/revisar_peticion_queries.php')
                 <td>${peticion.numero_cambio}</td>
                 <td>${peticion.fecha_solicitud}</td>
                 <td>${peticion.estado}</td>
-                <td><a href="ver_detalles.php?id=${peticion.id}" class="btn btn-info btn-sm">Ver detalles</a></td>
-
+                <td><a href="ver_detalles.php?id=${peticion.id}" class="btn btn-info btn-sm ${disabled}">Ver detalles</a></td>
             </tr>
         `;
         });

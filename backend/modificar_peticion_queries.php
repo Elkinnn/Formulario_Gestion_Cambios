@@ -102,6 +102,7 @@ if ($stmt = $conn->prepare($query_insert_seguimiento)) {
 
 // Redirigir o confirmar el éxito de la operación
 echo "La solicitud ha sido actualizada correctamente, incluyendo la revisión, el seguimiento y el estado.";
+sleep(5);
 header('Location: ../revisar_peticion.php');
-$conexion->close();
+$conn->close();
 ?>
