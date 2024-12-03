@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Enviar Petición</a>
+                        <a class="nav-link" href="enviar_peticion.php">Enviar Petición</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="review.html">Revisar Peticiones</a>
