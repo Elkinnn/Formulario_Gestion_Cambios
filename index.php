@@ -21,7 +21,7 @@
                         <a class="nav-link" href="enviar_peticion.php">Enviar Petición</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold" href="review.html">Revisar Peticiones</a>
+                        <a class="nav-link fw-semibold" href="revisar_peticion.php">Revisar Peticiones</a>
                     </li>
                 </ul>
             </div>
