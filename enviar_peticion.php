@@ -7,7 +7,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/enviar_peticion.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> <!-- Asegúrate de incluir este script -->
+
       <script src="./js/enviar_peticion.js"></script> 
+
+      <script>
+        function showConfirmationModal() {
+            // Mostrar el modal de confirmación
+            var myModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+            myModal.show();
+        }
+
+        function redirectToIndex() {
+            // Redirigir al index.php después de que el modal sea cerrado
+            window.location.href = 'index.php';
+        }
+    </script>   
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -22,7 +37,7 @@
                         <a class="nav-link" href="enviar_peticion.php">Enviar Petición</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="review.html">Revisar Peticiones</a>
+                        <a class="nav-link" href="revisar_peticion.php">Revisar Peticiones</a>
                     </li>
                 </ul>
             </div>
@@ -142,11 +157,28 @@
         </div>
         <input type="hidden" name="estado" value="Pendiente">
 
-        <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
-    </form>
+        <button type="button" class="btn btn-primary" onclick="showConfirmationModal();">Enviar Solicitud</button>
+        </form>
     
 </div>
 
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Solicitud Enviada</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¡Tu solicitud ha sido enviada correctamente! Se te redirigirá a la página principal en breve.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="redirectToIndex();">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <footer>
         <p>&copy; 2024 Gestión de Cambios. Todos los derechos reservados.</p>

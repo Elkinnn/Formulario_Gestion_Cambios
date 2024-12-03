@@ -20,7 +20,7 @@
                         <a class="nav-link" href="enviar_peticion.php">Enviar Petición</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="review.html">Revisar Peticiones</a>
+                        <a class="nav-link" href="revisar_peticion.php">Revisar Peticiones</a>
                     </li>
                 </ul>
             </div>

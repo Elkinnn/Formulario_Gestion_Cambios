@@ -8,7 +8,54 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <link href="css/ver_detalles.css" rel="stylesheet">
+
+
+    <script>
+
+    // Función para mostrar el modal de confirmación
+    function mostrarModalConfirmacion() {
+        var modal = new bootstrap.Modal(document.getElementById('confirmacionModal'));
+        modal.show();
+    }
+
+    
+    function validarFormulario(event) {
+    var form = document.querySelector('form');
+    var camposObligatorios = form.querySelectorAll('[required]');
+    var camposCompletos = true;
+
+    // Verificar que todos los campos requeridos estén llenos
+    camposObligatorios.forEach(function (campo) {
+        if (!campo.value.trim()) {
+            camposCompletos = false;
+            campo.classList.add('is-invalid');
+        } else {
+            campo.classList.remove('is-invalid');
+        }
+    });
+
+    // Si todos los campos están completos, mostrar el modal de confirmación
+    if (camposCompletos) {
+        mostrarModalConfirmacion();
+        event.preventDefault(); // Evitar el envío inmediato del formulario
+    } else {
+        alert("Por favor, complete todos los campos requeridos.");
+    }
+}
+
+
+
+document.querySelector('#confirmacionModal .btn-primary').addEventListener('click', function () {
+    document.querySelector('form').submit();  // Enviar el formulario
+});
+
+
+</script>
+
+
 </head>
 
 <body>
@@ -24,7 +71,7 @@
     <div class="container mt-5">
         <h2 class="text-center">Detalles de la Solicitud</h2>
 
-        <form action="backend/modificar_peticion_queries.php" method="POST">
+        <form action="backend/modificar_peticion_queries.php" method="POST" onsubmit="validarFormulario(event)">
 
             <!-- Información básica -->
             <div class="row mb-3">
@@ -181,6 +228,25 @@
                     required>
             </div>
 
+            <!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmacionModalLabel">¡Solicitud Actualizada!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>La solicitud se ha actualizado correctamente. Ahora puedes continuar o regresar a la lista de solicitudes.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <a href="revisar_peticion.php" class="btn btn-primary">Ir a Revisar Peticiones</a>
+      </div>
+    </div>
+  </div>
+</div>
+
             <!-- Estado de la Petición -->
             <div class="mb-3">
                 <label for="estado" class="form-label">Estado de la Petición</label>
@@ -193,6 +259,9 @@
 
             <button type="submit" class="btn btn-primary">Actualizar Solicitud</button>
             <input type="hidden" name="id" value="<?php echo $peticion['id']; ?>">
+
+
+                        <!-- Botón de enviar -->
         </form>
     </div>
 
